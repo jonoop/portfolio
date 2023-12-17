@@ -7,9 +7,11 @@ import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import useSectionInView from "@/lib/hooks";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Intro() {
   const { ref } = useSectionInView("Home", 0.5);
+  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (
     <section
@@ -79,6 +81,10 @@ export default function Intro() {
         <Link
           href="#contact"
           className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition  border border-white/10"
+          onClick={() => {
+            setActiveSection("Contact");
+            setTimeOfLastClick(Date.now());
+          }}
         >
           Contact me here{" "}
           <BsArrowRight className="opacity-70 group-hover:translate-x-1transition" />
@@ -87,7 +93,7 @@ export default function Intro() {
         <a
           href="/CV.pdf"
           download
-          className="group flex bg-white px-7 py-3 rounded-full gap-2 items-center outline-none focus:scale-110 hover:scale-110 active:scale-105 transition border border-black/10"
+          className="group flex bg-white px-7 py-3 rounded-full gap-2 items-center outline-none focus:scale-110 hover:scale-110 active:scale-105 transition borderBlack"
         >
           Download CV{" "}
           <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
@@ -96,7 +102,7 @@ export default function Intro() {
         <a
           href="https://www.linkedin.com/in/jonathan-chen-105b40265/?locale=en_US"
           target="_blank"
-          className="flex rounded-full items-center bg-white p-4 text-gray-700 text-[1.35rem]  outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition border border-black/10"
+          className="flex rounded-full items-center bg-white p-4 text-gray-700 text-[1.35rem]  outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition borderBlack"
         >
           <BsLinkedin />
         </a>
@@ -104,7 +110,7 @@ export default function Intro() {
         <a
           href="https://github.com/jonoop"
           target="_blank"
-          className="flex rounded-full items-center bg-white p-4 text-gray-700 text-[1.35rem]  outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition border border-black/10"
+          className="flex rounded-full items-center bg-white p-4 text-gray-700 text-[1.35rem]  outline-none focus:scale-[1.15] hover:scale-[1.15] hover:text-gray-950 active:scale-105 transition borderBlack"
         >
           <FaGithubSquare />
         </a>
